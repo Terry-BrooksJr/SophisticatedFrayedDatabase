@@ -1,7 +1,7 @@
 
 from flask import Flask, render_template
 import os
-from utils  import sign_url
+from utils  import sign_url, current_time
 import time
 
 def create_app(test_config=None):
@@ -26,8 +26,11 @@ def create_app(test_config=None):
 
     # a simple page that says hello
     @app.route("/")
+    @app.route("/report")    
+    @app.route("/home")
+    @app.route("/index")    
     def index():
         return render_template('report.html', signed_url=sign_url(
-    url=f"https://app.mode.com/solutionssandbox/reports/663318dbd45e/embed?access_key=10487a1c9fd81d6d97ecf5c3&run=now&timestamp={time.time()}/",key="10487a1c9fd81d6d97ecf5c3",secret="8b8ae202152c971a66980392"))
+    url=f"https://app.mode.com/solutionssandbox/reports/663318dbd45e/embed?access_key={os.getenv("ACCESS_KEY"}&run=now&timestamp={current_time}/",key="os.getenv("ACCESS_KEY"),secret=os.getenv("ACCESS_SECRET"))
 
     return app
