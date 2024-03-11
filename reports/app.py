@@ -1,8 +1,7 @@
 
 from flask import Flask, render_template
 import os
-from utils  import sign_url, current_time
-import time
+from reports.utils  import sign_url, current_time
 
 def create_app(test_config=None):
     # create and configure the app
