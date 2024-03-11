@@ -80,7 +80,8 @@ class ReportServer(BaseHTTPRequestHandler):
 def main(host, port):
     context = SSLContext(PROTOCOL_TLS_SERVER)
     context.load_cert_chain(certfile="ca-public.pem", keyfile="ca-private.pem")
-    server_address = (host, port)
+    logger.info(f"Host Sumitted is {host} on {port}")
+    server_address = (host, int(port))
     handler = ReportServer
 
     with TCPServer(server_address, handler) as httpd:
@@ -100,7 +101,7 @@ if __name__ == "__main__":
     if sys.argv:
         try:
             logger.info('Starting Server')
-            main(sys.argv[0], sys.argv[1])
+            main(sys.argv[1], sys.argv[2])
         except Exception as e:
             logger.error(f'Unable to Start Server {e}')
             raise e from e
