@@ -80,7 +80,7 @@ class ReportServer(BaseHTTPRequestHandler):
 def main(host, port):
     context = SSLContext(PROTOCOL_TLS_SERVER)
     context.load_cert_chain(certfile="ca-public.pem", keyfile="ca-private.pem")
-    server_address = (host, port)
+    server_address = (host, int(port))
     handler = ReportServer
 
     with TCPServer(server_address, handler) as httpd:
