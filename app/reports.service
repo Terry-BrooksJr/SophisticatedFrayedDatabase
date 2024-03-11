@@ -1,0 +1,16 @@
+[Unit]
+Description=Reports Service
+After=network.target
+ConditionPathExists=WorkingDirectory=/home/ec2-user/SophisticatedFrayedDatabase/
+
+[Service]
+Type=simple
+User=ec2-user
+WorkingDirectory=/home/ec2-user/SophisticatedFrayedDatabase/
+ExecStart=/reports_app.sh  start
+ExecStop=/reports_app.sh  stop
+ExecReload=//reports_app.sh  restart
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
