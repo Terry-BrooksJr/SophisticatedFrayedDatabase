@@ -5,6 +5,7 @@ import base64
 import time
 from loguru import logger
 
+current_time = time.time()
 def sign_url(url: str, key: str, secret:str) -> str:
     """
     Generate a signed URL by creating a signature using the provided key and secret.
@@ -23,7 +24,7 @@ def sign_url(url: str, key: str, secret:str) -> str:
     content_digest = hashlib.md5().digest()
     content_digest = base64.encodebytes(content_digest).decode('utf-8').strip()
         
-    request_string = ','.join([request_type, content_type, content_digest, url, str(time.time())])
+    request_string = ','.join([request_type, content_type, content_digest, url, str(current_time)])
 
     secret_bytes = bytearray(secret, encoding='utf-8')
     request_bytes = bytearray(request_string, encoding='utf-8')
