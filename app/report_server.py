@@ -101,7 +101,7 @@ if __name__ == "__main__":
     if sys.argv:
         try:
             logger.info('Starting Server')
-            main(sys.argv[0], sys.argv[1])
+            main(sys.argv[1], sys.argv[2])
         except Exception as e:
             logger.error(f'Unable to Start Server {e}')
             raise e from e
